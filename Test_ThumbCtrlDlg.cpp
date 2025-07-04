@@ -110,6 +110,7 @@ BOOL CTestThumbCtrlDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
 	m_thumb.create(this);
+	m_thumb.set_color_theme(CSCColorTheme::color_theme_dark_gray);
 
 	RestoreWindowPosition(&theApp, this);
 
