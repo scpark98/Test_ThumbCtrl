@@ -228,7 +228,8 @@ void CTestThumbCtrlDlg::OnTimer(UINT_PTR nIDEvent)
 	{
 		KillTimer(timer_load_files);
 
-		CString recent_folder = theApp.GetProfileString(_T("setting"), _T("recent folder"), _T(""));
+		//CString recent_folder = theApp.GetProfileString(_T("setting"), _T("recent folder"), _T(""));
+		CString recent_folder = _T("Z:\\내 드라이브\\media\\test_image\\CGdiplusBitmap effects");
 		m_thumb.set_path(recent_folder);
 	}
 
