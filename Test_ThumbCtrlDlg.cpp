@@ -111,6 +111,7 @@ BOOL CTestThumbCtrlDlg::OnInitDialog()
 
 	m_thumb.create(this);
 	m_thumb.set_color_theme(CSCColorTheme::color_theme_dark_gray);
+	m_thumb.set_font_size(12);
 
 	RestoreWindowPosition(&theApp, this);
 
@@ -173,6 +174,14 @@ HCURSOR CTestThumbCtrlDlg::OnQueryDragIcon()
 
 void CTestThumbCtrlDlg::OnBnClickedOk()
 {
+	m_thumb.m_thumb[5].score = 5.0f;
+	m_thumb.sort_by_title();
+	m_thumb.sort_by_info(0);
+	m_thumb.sort_by_score();
+
+
+	CGdiplusBitmap img = m_thumb.m_thumb[5].img;
+	m_thumb.m_thumb[5].img.deep_copy(&img);
 }
 
 void CTestThumbCtrlDlg::OnBnClickedCancel()
@@ -228,9 +237,13 @@ void CTestThumbCtrlDlg::OnTimer(UINT_PTR nIDEvent)
 	{
 		KillTimer(timer_load_files);
 
-		//CString recent_folder = theApp.GetProfileString(_T("setting"), _T("recent folder"), _T(""));
-		CString recent_folder = _T("Z:\\내 드라이브\\media\\test_image\\CGdiplusBitmap effects");
+		CString recent_folder = theApp.GetProfileString(_T("setting"), _T("recent folder"), _T(""));
+		//CString recent_folder = _T("Z:\\내 드라이브\\media\\test_image\\CGdiplusBitmap effects");
 		m_thumb.set_path(recent_folder);
+
+		//std::deque<CString> thumb_files;
+		//FindAllFiles(_T("G:\\model_faces"), &thumb_files, _T("*"), FILE_EXTENSION_IMAGE);
+		//m_thumb.set_path(_T("G:\\model_faces"));
 	}
 
 	CDialogEx::OnTimer(nIDEvent);
